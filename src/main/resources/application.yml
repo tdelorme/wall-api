@@ -15,4 +15,4 @@ wall:
       2,...
       >
     token: "<REPLACE BY PRIVATE ACCESS TOKEN>"
-    pipeline: "http://gitlab.ent.local/api/v4/projects"
+    pipeline: "<REPLACE_BY_GITLAB_BASE_HOST>/api/v4/projects"
