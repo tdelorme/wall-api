@@ -1,4 +1,4 @@
-package fr.ceured.wall.gitlab.model;
+package fr.ceured.wall.wall.model;
 
 import lombok.*;
 
@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Getter
 @Setter
-public class GitlabResponse {
+public class WallResponse {
 
     private String name;
     private Integer pipelineNumber;

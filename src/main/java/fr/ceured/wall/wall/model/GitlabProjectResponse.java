@@ -1,4 +1,4 @@
-package fr.ceured.wall.gitlab.model;
+package fr.ceured.wall.wall.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

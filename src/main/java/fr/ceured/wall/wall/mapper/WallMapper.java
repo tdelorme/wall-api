@@ -1,12 +1,12 @@
-package fr.ceured.wall.gitlab.mapper;
+package fr.ceured.wall.wall.mapper;
 
-import fr.ceured.wall.gitlab.model.GitlabApiResponse;
-import fr.ceured.wall.gitlab.model.GitlabResponse;
+import fr.ceured.wall.wall.model.GitlabApiResponse;
+import fr.ceured.wall.wall.model.WallResponse;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
 @Mapper(componentModel="spring")
-public interface GitlabMapper {
+public interface WallMapper {
 
     @Mapping(target = "name", source="webUrl")
     @Mapping(source = "ref", target="branchName")
@@ -17,5 +17,5 @@ public interface GitlabMapper {
     @Mapping(source = "user.username", target = "owner")
     @Mapping(source = "duration", target = "launchSinceSeconds")
     @Mapping(source = "queuedDuration", target = "waitingSinceSeconds")
-    GitlabResponse toGitlabResponse(GitlabApiResponse source);
+    WallResponse toGitlabResponse(GitlabApiResponse source);
 }

@@ -8,6 +8,12 @@ server:
 
 wall:
   gitlab:
+    branch: >
+      <REPLACE BY LIST OF GITLAB BRANCH NAMES SEPARATE BY COMA (,) and BREAK LINE>
+       <SAMPLE:
+       develop,
+       main,...
+       >
     ids: >
       <REPLACE BY LIST OF GITLAB PROJECT IDs SEPARATE BY COMA (,) and BREAK LINE>
       <SAMPLE:
@@ -15,4 +21,5 @@ wall:
       2,...
       >
     token: "<REPLACE BY PRIVATE ACCESS TOKEN>"
-    pipeline: "<REPLACE_BY_GITLAB_BASE_HOST>/api/v4/projects"
+    baseHost: "<REPLACE_BY_GITLAB_BASE_HOST>"
+    path: "<REPLACE_BY_GITLAB_PATH_PROJECT>"
