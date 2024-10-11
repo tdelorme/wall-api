@@ -17,6 +17,7 @@ import java.util.*;
 @Service
 public class WallService {
 
+    public static final String PIPELINES_PATH = "/-/pipelines/";
     @Value("${wall.gitlab.ids}")
     private List<String> ids;
 
@@ -41,13 +42,8 @@ public class WallService {
         List<WallResponse> result = new ArrayList<>();
 
         ids.forEach(id -> {
-            log.info("run for id {}", id);
             GitlabApiResponse response = client.getLatestPipeline(privateToken, id);
-            WallResponse wallResponse = mapper.toGitlabResponse(response);
-            String[] tab = cleanUrlPipeline(wallResponse).split("/-/pipelines/");
-            wallResponse.setName(tab[0]);
-            wallResponse.setPipelineNumber(Integer.parseInt(tab[1]));
-            result.add(wallResponse);
+            result.add(mapWallResponse(response));
         });
 
         return result;
@@ -69,19 +65,21 @@ public class WallService {
 
             List<WallResponse> test = gitlabApiResponses.stream()
                     .filter(Objects::nonNull)
-                    .map(response -> {
-                        WallResponse wallResponse = mapper.toGitlabResponse(response);
-                        String[] tab = cleanUrlPipeline(wallResponse).split("/-/pipelines/");
-                        wallResponse.setName(tab[0]);
-                        wallResponse.setPipelineNumber(Integer.parseInt(tab[1]));
-                        return wallResponse;
-                    })
+                    .map(this::mapWallResponse)
                     .toList();
 
             resultMap.put(projectName, test);
         });
 
         return resultMap;
+    }
+
+    private WallResponse mapWallResponse(GitlabApiResponse response) {
+        WallResponse wallResponse = mapper.toGitlabResponse(response);
+        String[] tab = cleanUrlPipeline(wallResponse).split(PIPELINES_PATH);
+        wallResponse.setName(tab[0]);
+        wallResponse.setPipelineNumber(Integer.parseInt(tab[1]));
+        return wallResponse;
     }
 
     private String cleanUrlPipeline(WallResponse wallResponse) {
