@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: "wall-api"
+server:
+  port: 8888
+  servlet:
+    context-path: "/wall-api"
+
+wall:
+  gitlab:
+    ids: >
+      <REPLACE BY LIST OF GITLAB PROJECT IDs SEPARATE BY COMA (,) and BREAK LINE>
+      <SAMPLE:
+      1,
+      2,...
+      >
+    token: "<REPLACE BY PRIVATE ACCESS TOKEN>"
+    pipeline: "http://gitlab.ent.local/api/v4/projects"
