@@ -51,7 +51,7 @@ public class WallService {
 
     public Map<String, List<WallResponse>> getPipelineProjectsOnSpecificBranch() {
 
-        Map<String, List<WallResponse>> resultMap= new HashMap<>();
+        Map<String, List<WallResponse>> resultMap = new HashMap<>();
 
         ids.forEach(id -> {
             String projectName = client.getNameProject(privateToken, id).getName();
@@ -83,7 +83,7 @@ public class WallService {
     }
 
     private String cleanUrlPipeline(WallResponse wallResponse) {
-        return wallResponse.getName().replace(baseHost, "").replace(path, "");
+        return wallResponse.getName().replace(baseHost + path, "");
     }
 
     private GitlabApiResponse getLastPipelineByIdProjectAndBranch(String id, String branchName) {
